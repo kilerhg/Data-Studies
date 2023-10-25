@@ -116,6 +116,30 @@ You can also round to the left, not only digits:
 INPUT - 123456.56
 OUTPUT - 123000
 
+## Group by
+
+Enables groups in SQL, being able to create analytics with subgroup.
+
+When using group by be sure that your selected non cumulative field are grouped fields.
+
+### Simple Example
+
+Example counting the name that each name appears at the people table.
+
+```sql
+select name, count(name) from people
+group by name
+```
+
+### Multi Field Example
+
+Example counting the name that each name appears at the people table.
+
+```sql
+select name, country, count(name) from people
+group by name, country
+```
+
 ## References
 
 * [SQL Style Guide](https://www.sqlstyle.guide/)
