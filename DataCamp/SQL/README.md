@@ -140,6 +140,74 @@ select name, country, count(name) from people
 group by name, country
 ```
 
+### Having
+
+The way to use where in Group by, write after the group by
+
+Example returns only the name that has more than 10 occurrences
+
+```sql
+select names, count(names)
+from person
+group by names
+having count(names) > 10
+```
+
+## Join
+
+Select data from more than one table at the same time
+
+### Inner Join
+
+Returns data that happens at both table
+
+```sql
+select names
+from person
+inner join address as a
+on person.id = a.person_id
+```
+
+### Left Join
+
+Use the first table as the origin and add value to it from the second table.
+
+OBS: Return a line from the first table even if the value it's not on the second table.
+
+```sql
+select names
+from person
+left join address as a
+on person.id = a.person_id
+```
+
+### Using
+
+Quick way to join tables that has the same join_field in both tables.
+
+Example: Join the tables using the column person_id that is the same at both tables.
+
+```sql
+select names
+from person
+left join address as a
+using (person_id)
+```
+
+### More than one field to match
+
+A way to be more specific about what data to bring in a join.
+
+Example: Join where the name and the birth_date is the same at both tables.
+
+```sql
+select names
+from person p
+left join address as a
+on p.name = a.person_name
+    AND p.birth_date = a.birth_date;
+```
+
 ## References
 
 * [SQL Style Guide](https://www.sqlstyle.guide/)
